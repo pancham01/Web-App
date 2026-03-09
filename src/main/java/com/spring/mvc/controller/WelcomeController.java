@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WelcomeController {
 
-//	@RequestMapping(value = "/login" , method =  RequestMethod.GET)
 	@GetMapping("/")
 	public String greeting() {
 		System.out.println("WelcomeController.greeting()");
