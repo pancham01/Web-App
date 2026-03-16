@@ -9,7 +9,7 @@
 <body bgcolor="pink">
 
 
-	<h1>Welcome ! Your username is : Mr. ${name}</h1>
+	<h1>Welcome ! Your username is : Mr. ${username}</h1>
 	<h1>Welcome ! Your department is : Mr. ${department}</h1>
 	<h1>Welcome ! Your address is : Mr. ${address}</h1>
 
