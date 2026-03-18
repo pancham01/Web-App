@@ -43,8 +43,6 @@ button{
 
 <h2>Sign Up</h2>
 
-localhost:8080/WebApp/signupUser
-
 <form action="${pageContext.request.contextPath}/createUser" method="post">
 
 <label>Username</label>
