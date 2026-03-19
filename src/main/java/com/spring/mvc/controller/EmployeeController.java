@@ -21,18 +21,6 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 
-	static Map<Integer, Employee> map = null;
-	static int empId = 0;
-	static {
-
-		map = new HashMap<>();
-		map.put(++empId, new Employee(empId, "Mukesh", "IT", "Noida:"));
-		map.put(++empId, new Employee(empId, "Nitesh", "IT", "Noida:"));
-		map.put(++empId, new Employee(empId, "Abhishek", "IOT", "Noida:"));
-		map.put(++empId, new Employee(empId, "Nakul", "AI", "Noida:"));
-		map.put(++empId, new Employee(empId, "Prakash", "IT", "Noida:"));
-
-	}
 
 	@GetMapping("/")
 	public String welcome() {
@@ -46,21 +34,6 @@ public class EmployeeController {
 		return "sign-up";
 	}
 
-	@PostMapping("/signupUser")
-	public String postUser(@RequestParam(name = "username") String username,
-			@RequestParam(name = "department") String department, @RequestParam(name = "address") String address,
-			Model model) {
-		System.out.println("Username : " + username);
-		System.out.println("Department : " + department);
-		System.out.println("Address : " + address);
-
-		model.addAttribute("username", username);
-		model.addAttribute("department", department);
-		model.addAttribute("address", address);
-
-		return "success";
-	}
-
 	@PostMapping("/createUser")
 	public String createUser(@ModelAttribute Employee emp, Model model) {
 		employeeService.saveEmployee(emp);
@@ -69,10 +42,16 @@ public class EmployeeController {
 
 	@GetMapping("/getEmpById/{id}")
 	public String getEmp(@PathVariable(name = "id") int id, Model model) {
-		Employee e = map.get(id);
-		model.addAttribute("employee", e);
+		
 		
 		return "success";
 	}
 
+	
+	
+	@GetMapping("/employees")
+	public String listEmployees(Model model) {
+		model.addAttribute("employees", employeeService.getAllEmployees());
+		return "employeeList";
+	}
 }
