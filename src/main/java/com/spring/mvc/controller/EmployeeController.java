@@ -63,9 +63,6 @@ public class EmployeeController {
 
 	@PostMapping("/createUser")
 	public String createUser(@ModelAttribute Employee emp, Model model) {
-		System.out.println(emp);
-		emp.setId(++empId);
-//		map.put(empId, emp);
 		employeeService.saveEmployee(emp);
 		return "success";
 	}

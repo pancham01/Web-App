@@ -18,11 +18,8 @@ public class EmployeeDao {
     }
 
     
-    
     public void saveEmployee(Employee emp) {
-		// TODO Auto-generated method stub
 		System.out.println("EmployeeDao.saveEmployee()");
-
 		hibernateTemplate.save(emp);
 		
 	}
