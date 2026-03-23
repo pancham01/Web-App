@@ -1,57 +1,35 @@
 package com.spring.mvc.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.mvc.model.Employee;
-import com.spring.mvc.service.EmployeeService;
 
 @Controller
 public class EmployeeController {
 	
-	@Autowired
-	EmployeeService employeeService;
-
-
+	
 	@GetMapping("/")
-	public String welcome() {
-		System.out.println("UserController.welcome()");
-		return "index";
-	}
-
-	@GetMapping("/sign-up")
-	public String signUpForm() {
-		System.out.println("UserController.signUpForm()");
-		return "sign-up";
-	}
-
-	@PostMapping("/createUser")
-	public String createUser(@ModelAttribute Employee emp, Model model) {
-		employeeService.saveEmployee(emp);
-		return "success";
-	}
-
-	@GetMapping("/getEmpById/{id}")
-	public String getEmp(@PathVariable(name = "id") int id, Model model) {
+	@ResponseBody
+	public String getData()
+	{
+		System.out.println("EmployeeController.getData()");
 		
-		
-		return "success";
+		return "Hello This is my first RestApi";
 	}
-
 	
 	
-	@GetMapping("/employees")
-	public String listEmployees(Model model) {
-		model.addAttribute("employees", employeeService.getAllEmployees());
-		return "employeeList";
+	@GetMapping("/getEmp")
+	@ResponseBody
+	public Employee getDummyObj()
+	{
+		System.out.println("EmployeeController.getDummyObj()");
+		Employee e = new Employee(1,"Dummy", "CS","NOIDA");
+		
+		return e;
 	}
+	
+	
+	
 }
